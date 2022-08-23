@@ -12,8 +12,10 @@ import { ConversationThreadComponent } from './conversation-thread/conversation-
 import { SendMessageComponent } from './send-message/send-message.component';
 
 import { LoggingService } from './services/logging.service';
+import { MessagingDataService } from './services/messaging-data.service';
 import { MessageCountComponent } from './message-count/message-count.component';
 import { ConversationHistoryComponent } from './conversation-history/conversation-history.component';
+import { HttpClientModule } from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -30,9 +32,10 @@ import { ConversationHistoryComponent } from './conversation-history/conversatio
   ],
   imports: [
     BrowserModule, 
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
-  providers: [LoggingService],
+  providers: [LoggingService, MessagingDataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
