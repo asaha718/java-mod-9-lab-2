@@ -44,6 +44,13 @@ export class MessagingDataService {
     }
 
     getUserMessages() {
+        this.httpClient
+            .get<Message[]>("http://localhost:8080/api/get-user-messages")
+            .subscribe((messages: Message[]) => {
+                console.log(messages);
+                this.userMessages = messages;
+                this.userMessagesChanged.emit(this.userMessages);
+            });
         return this.userMessages.slice();
     }
 
