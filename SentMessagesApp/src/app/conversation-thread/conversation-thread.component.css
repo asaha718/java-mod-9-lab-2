@@ -1,0 +1,10 @@
+.sender-message-ctn{ 
+    display: flex;
+    align-items: center;
+}
+
+.user-message-ctn{ 
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}

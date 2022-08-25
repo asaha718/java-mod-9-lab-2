@@ -26,4 +26,25 @@ export class ConversationThreadComponent implements OnInit {
       this.userMessages = messages;
     });
   }
+
+  onDeleteSenderMessage(id: number) {
+  
+    if (this.senderMessages.length > 1) {
+      this.senderMessages.splice(id, 1)
+    } else {
+      this.senderMessages = [];
+    }
+    console.log("sender messages", this.senderMessages)
+
+  }
+
+  onDeleteUserMessage(id: number) {
+  
+    if (this.userMessages.length > 1) {
+      this.userMessages.splice(id, 1)
+    } else {
+      this.userMessages = [];
+    }
+    console.log("user messages", this.userMessages)
+  }
 }
