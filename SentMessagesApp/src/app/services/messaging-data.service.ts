@@ -1,7 +1,7 @@
 import { Injectable, EventEmitter } from "@angular/core";
 import { LoggingService } from "./logging.service";
 import { Message } from "../models/message.model";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 
 @Injectable()
 export class MessagingDataService {
@@ -57,6 +57,24 @@ export class MessagingDataService {
     addUserMessage(newMessage: Message) {
         this.userMessages.push(newMessage);
         this.userMessagesChanged.emit(this.userMessages.slice());
+    }
+
+    deleteUserMessages(message: Message) {
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/json; charset=utf-8',
+        });
+
+        const options = {
+            headers: headers,
+            body: JSON.stringify(message),
+        };
+
+        this.httpClient.delete<Message[]>("http://localhost:8080/api/delete-message", options)
+            .subscribe(messages => {
+                this.userMessages = messages;
+                this.userMessagesChanged.emit(this.userMessages.slice())
+            });
+
     }
 
     constructor(private loggingSvce: LoggingService
